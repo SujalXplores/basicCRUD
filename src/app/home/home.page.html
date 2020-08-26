@@ -8,11 +8,11 @@
 
 <ion-content [fullscreen]="true">
   <ion-list lines="none">
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let post of posts">
       <ion-item class="no-padding">
         <ion-label>
-          <h2>Title</h2>
-          <p>Details</p>
+          <h2>{{post.title}}</h2>
+          <p>{{post.details}}</p>
         </ion-label>
       </ion-item>
       <ion-item-options side="start">
@@ -27,4 +27,10 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink='/add-post'>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
