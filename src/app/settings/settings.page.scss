@@ -7,11 +7,7 @@
   margin-bottom: 5px;
 }
 
-.component-icon-primary {
-  background: var(--ion-color-primary);
-  color: #fff;
-}
-
-.home-list {
-  padding-top: 0 !important;
+.component-icon-dark {
+  background: var(--ion-color-step-850, #27323e);
+  color: var(--ion-item-background, #fff);
 }
