@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from "src/environments/environment";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,9 +23,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   providers: [
+    AppVersion,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

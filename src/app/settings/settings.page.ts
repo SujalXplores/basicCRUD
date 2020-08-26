@@ -1,22 +1,24 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  profileData: any;
+  profileData: string;
   constructor(
     private _renderer: Renderer2,
-    private afAuth: AngularFireAuth,
-    private afData: AngularFireDatabase,
-  ) { 
-
-  }
+    private appVersion: AppVersion
+  ) { }
 
   ngOnInit() {
+    this.appVersion.getVersionNumber().then((versionNumber) => {
+      this.profileData = versionNumber;
+    },(error) => {
+        console.log(error);
+      }
+    );
   }
 
   onThemeChange(event) {
