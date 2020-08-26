@@ -1,9 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>editPost</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Post</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form (ngSubmit)="editPost(post)">
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input [ngModelOptions]="{standalone: true}" type="text" required [(ngModel)]="post.title" clearInput></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Details</ion-label>
+      <ion-textarea [ngModelOptions]="{standalone: true}" type="text" required [(ngModel)]="post.details" clearInput></ion-textarea>
+    </ion-item>
 
+    <ion-button class="ion-padding ion-margin-top" color="primary" expand="full" type="submit">Edit</ion-button>
+  </form>
 </ion-content>

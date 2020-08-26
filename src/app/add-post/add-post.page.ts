@@ -10,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AddPostPage implements OnInit {
 
-  post= {} as Post
+  post= {} as Post;
   constructor(
     private _toastCtrl: ToastController,
     private _loadingCtrl: LoadingController,
