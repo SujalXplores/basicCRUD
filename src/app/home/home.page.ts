@@ -15,11 +15,13 @@ export class HomePage {
     private _fireStore: AngularFirestore
   ) { }
 
-  ionViewWillEnter() { }
+  ionViewWillEnter() {
+    this.getPosts();
+  }
 
   async getPosts() {
     let loader = this._loadingCtrl.create({
-      message: "Please wait..."
+      message: "Fetching Posts..."
     });
     (await loader).present();
 
@@ -50,5 +52,18 @@ export class HomePage {
         }
       ]
     }).then(toastData => toastData.present());
+  }
+
+  async deletePost(id: string) {
+    let loader = this._loadingCtrl.create({
+      message: "Deleting..."
+    });
+    (await loader).present();
+    try {
+      await this._fireStore.doc("posts/" + id).delete();
+    } catch (e) {
+      this.showToast(e);
+    }
+    (await loader).dismiss();
   }
 }

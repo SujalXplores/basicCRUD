@@ -1,9 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>addPost</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Add Post</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form (ngSubmit)="addPost(post)">
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input [ngModelOptions]="{standalone: true}" type="text" required [(ngModel)]="post.title" clearInput></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Details</ion-label>
+      <ion-input [ngModelOptions]="{standalone: true}" type="text" required [(ngModel)]="post.details" clearInput></ion-input>
+    </ion-item>
 
+    <ion-button class="ion-padding ion-margin-top" color="primary" expand="full" type="submit">Create</ion-button>
+  </form>
 </ion-content>

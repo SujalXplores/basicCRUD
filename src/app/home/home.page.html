@@ -8,6 +8,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list lines="none">
+    <ion-item *ngIf="posts <= 0">No records left. Create new one</ion-item>
     <ion-item-sliding *ngFor="let post of posts">
       <ion-item class="no-padding">
         <ion-label>
@@ -21,7 +22,7 @@
         </ion-item-option>
       </ion-item-options>
       <ion-item-options side="end">
-        <ion-item-option color="danger">
+        <ion-item-option color="danger" (click)="deletePost(post.id)">
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
