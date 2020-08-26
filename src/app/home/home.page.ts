@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ToastController, LoadingController, NavController } from '@ionic/angular';
+import { ToastController, LoadingController, NavController, AlertController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -15,7 +15,8 @@ export class HomePage {
     private _loadingCtrl: LoadingController,
     private _fireStore: AngularFirestore,
     private _firebaseAuth: AngularFireAuth,
-    private _navCtrl: NavController
+    private _navCtrl: NavController,
+    private _alertController: AlertController
   ) { }
 
   ionViewWillEnter() {
@@ -70,9 +71,25 @@ export class HomePage {
     (await loader).dismiss();
   }
 
-  logOut() {
-    this._firebaseAuth.signOut().then(data=>{
-      this._navCtrl.navigateRoot("login");
+  async presentAlertConfirm() {
+    const alert = await this._alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure to logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Logout',
+          handler: () => {
+            this._firebaseAuth.signOut().then(data=>{
+              this._navCtrl.navigateRoot("login");
+            });
+          }
+        }
+      ]
     });
+    await alert.present();
   }
 }

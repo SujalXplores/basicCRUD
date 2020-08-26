@@ -1,11 +1,32 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list class="theme-list" lines="full">
+    <ion-item>
+      <ion-icon slot="start" icon="code-outline" class="component-icon component-icon-dark"></ion-icon>
+      <ion-label>
+        Made with ❤️ by Sujal Shah
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" icon="shield-outline" class="component-icon component-icon-dark"></ion-icon>
+      <ion-label>
+        Scanned by VirusTotal
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" icon="logo-firebase" class="component-icon component-icon-dark"></ion-icon>
+      <ion-label>
+        Firebase Backend
+      </ion-label>
+    </ion-item>
     <ion-item>
       <ion-icon slot="start" icon="moon" class="component-icon component-icon-dark"></ion-icon>
       <ion-label>

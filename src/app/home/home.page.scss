@@ -8,3 +8,21 @@ ion-item-sliding {
   justify-content: center;
   height: 100%;
 }
+
+.component-icon {
+  border-radius: 50%;
+  padding: 7px;
+  height: 18px;
+  width: 18px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.component-icon-primary {
+  background: var(--ion-color-primary);
+  color: #fff;
+}
+
+.home-list {
+  padding-top: 0 !important;
+} 

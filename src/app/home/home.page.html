@@ -1,16 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>Home</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="vertical-center">
+  <div class="vertical-center" *ngIf="posts <= 0">
     <div class="center">
-      <ion-img *ngIf="posts <= 0" src="../../assets/Inbox-Empty-icon.png" height="50" width="50" class="ion-align-self-end"></ion-img>
+      <ion-img src="../../assets/Inbox-Empty-icon.png" height="50" width="50" class="ion-align-self-end"></ion-img>
     </div>   
   </div>
   <ion-list lines="none">
@@ -35,8 +32,21 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink='/add-post'>
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button>
+      <ion-icon name="caret-back"></ion-icon>
     </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="danger" (click)="presentAlertConfirm()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button routerLink='/settings' color="light">
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink='/add-post' color="light">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
   </ion-fab>
 </ion-content>
