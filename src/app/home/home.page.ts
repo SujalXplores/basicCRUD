@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, NavController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,9 @@ export class HomePage {
   constructor(
     private _toastCtrl: ToastController,
     private _loadingCtrl: LoadingController,
-    private _fireStore: AngularFirestore
+    private _fireStore: AngularFirestore,
+    private _firebaseAuth: AngularFireAuth,
+    private _navCtrl: NavController
   ) { }
 
   ionViewWillEnter() {
@@ -65,5 +68,11 @@ export class HomePage {
       this.showToast(e);
     }
     (await loader).dismiss();
+  }
+
+  logOut() {
+    this._firebaseAuth.signOut().then(data=>{
+      this._navCtrl.navigateRoot("login");
+    });
   }
 }

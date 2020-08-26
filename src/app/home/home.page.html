@@ -1,14 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="vertical-center">
+    <div class="center">
+      <ion-img *ngIf="posts <= 0" src="../../assets/Inbox-Empty-icon.png" height="50" width="50" class="ion-align-self-end"></ion-img>
+    </div>   
+  </div>
   <ion-list lines="none">
-    <ion-item *ngIf="posts <= 0">No records left. Create new one</ion-item>
     <ion-item-sliding *ngFor="let post of posts">
       <ion-item class="no-padding">
         <ion-label>
