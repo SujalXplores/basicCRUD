@@ -5,14 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input type="email" required></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input type="password" required></ion-input>
-  </ion-item>
-  <ion-button class="ion-padding ion-margin-top" color="primary" expand="full">Register</ion-button>
+  <form (ngSubmit)="register(user)">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [ngModelOptions]="{standalone: true}" type="email" required [(ngModel)]="user.email" clearInput></ion-input>
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+      <ion-input [ngModelOptions]="{standalone: true}" [type]="showPassword ? 'text' : 'password'" required [(ngModel)]="user.password"></ion-input>
+      <ion-icon slot="end" class="ion-margin-top" [name]="passwordIcon" (click)="togglePassword()"></ion-icon>
+    </ion-item>
+
+    <ion-button class="ion-padding ion-margin-top" color="primary" expand="full" type="submit">Register</ion-button>
+  </form>
+
   <p class="ion-padding ion-margin-top" align="center">Already have an account? <a class="ion-color-primary" routerLink="/login">Login</a></p>
 </ion-content>
