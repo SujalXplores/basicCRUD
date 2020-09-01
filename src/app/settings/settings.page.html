@@ -10,6 +10,16 @@
 <ion-content>
   <ion-list class="theme-list" lines="full">
     <ion-item>
+      <ion-avatar slot="start">
+        <img [src]="profileImg" onerror="this.src='../../assets/avatar.svg';"/>
+      </ion-avatar>
+      <ion-label>
+        <h3>{{profileName || 'Anonymous'}}</h3>
+        <p>{{profileEmail}}</p>
+      </ion-label>
+      <ion-icon name="pencil-outline" class="icon-only" slot="end" routerLink='/settings/update-profile'></ion-icon>
+    </ion-item>
+    <ion-item>
       <ion-icon slot="start" icon="code-outline" class="component-icon component-icon-dark"></ion-icon>
       <ion-label>
         Made with ❤️ by Sujal Shah
@@ -28,10 +38,12 @@
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-icon slot="start" icon="cube-outline" class="component-icon component-icon-dark"></ion-icon>
+      <ion-icon slot="start" icon="mail-outline" class="component-icon component-icon-dark"></ion-icon>
       <ion-label>
-        Version {{profileData}}
+        Verify Email
       </ion-label>
+      <ion-badge slot="end" color="danger" *ngIf="isVerified=='Verify'" (click)="sendEmail()">{{isVerified}}</ion-badge>
+      <ion-badge slot="end" color="success" *ngIf="isVerified=='Verified'">{{isVerified}}</ion-badge>
     </ion-item>
     <ion-item>
       <ion-icon slot="start" icon="moon" class="component-icon component-icon-dark"></ion-icon>
@@ -40,5 +52,24 @@
       </ion-label>
       <ion-toggle slot="end" (ionChange)="onThemeChange($event)"></ion-toggle>
     </ion-item>
+    <ion-item (click)="onLogout()">
+      <ion-icon slot="start" icon="log-out-outline" class="component-icon component-icon-dark"></ion-icon>
+      <ion-label>
+        LogOut
+      </ion-label>
+    </ion-item>
+    <ion-item (click)="onDeleteAccount()">
+      <ion-icon slot="start" icon="trash-outline" class="component-icon component-icon-dark"></ion-icon>
+      <ion-label>
+        Delete Account
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-item>
+      <ion-label align="center">Version: {{profileData || 'Stable-2.0.0'}}</ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

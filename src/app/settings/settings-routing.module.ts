@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SettingsPage
+  },
+  {
+    path: 'update-profile',
+    loadChildren: () => import('./update-profile/update-profile.module').then( m => m.UpdateProfilePageModule)
   }
 ];
 

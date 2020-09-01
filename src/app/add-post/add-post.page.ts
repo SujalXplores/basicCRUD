@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post.model';
 import { ToastController, LoadingController, NavController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-add-post',
@@ -10,12 +11,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AddPostPage implements OnInit {
 
-  post= {} as Post;
+  post = {} as Post;
+  profileEmail: string;
   constructor(
     private _toastCtrl: ToastController,
     private _loadingCtrl: LoadingController,
     private _navCtrl: NavController,
-    private _fireStore: AngularFirestore
+    private _fireStore: AngularFirestore,
+    private _afAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
@@ -28,7 +31,18 @@ export class AddPostPage implements OnInit {
       });
       (await loader).present();
       try {
-        await this._fireStore.collection("posts").add(post);
+        var user = this._afAuth.currentUser;
+        if (user != null) {
+          (await user).providerData.forEach(profile => {
+            this.profileEmail = profile.email;
+            let obj={
+              title: post.title,
+              details: post.details,
+              user_email: this.profileEmail
+            }
+            this._fireStore.collection("posts").add(obj);
+          });
+        }
       } catch (e) {
         this.showToast(e);
       }

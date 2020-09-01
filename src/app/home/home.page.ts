@@ -16,7 +16,8 @@ export class HomePage {
     private _fireStore: AngularFirestore,
     private _firebaseAuth: AngularFireAuth,
     private _navCtrl: NavController,
-    private _alertController: AlertController
+    private _alertController: AlertController,
+    private _afAuth: AngularFireAuth
   ) { }
 
   ionViewWillEnter() {
@@ -30,19 +31,31 @@ export class HomePage {
     (await loader).present();
 
     try {
-      this._fireStore.collection("posts").snapshotChanges().subscribe(data => {
-        this.posts = data.map(e => {
-          return {
-            id: e.payload.doc.id,
-            title: e.payload.doc.data()["title"],
-            details: e.payload.doc.data()["details"]
-          }
-        })
-      });
+      this.getUserByPost();
     } catch (e) {
       this.showToast(e);
     }
+
     (await loader).dismiss();
+  }
+
+  async getUserByPost() {
+    // this._fireStore.collection("posts")
+    let user = this._afAuth.currentUser;
+    if (user != null) {
+      (await user).providerData.forEach(profile => {
+        this._fireStore.collection("posts", ref => ref.where('user_email', '==', profile.email)).snapshotChanges().subscribe((data) => {
+          this.posts = data.map(e => {
+            return {
+              id: e.payload.doc.id,
+              title: e.payload.doc.data()["title"],
+              details: e.payload.doc.data()["details"]
+            }
+          });
+          console.log(this.posts);
+        });
+      });
+    }
   }
 
   showToast(message: string) {
@@ -83,7 +96,7 @@ export class HomePage {
         }, {
           text: 'Logout',
           handler: () => {
-            this._firebaseAuth.signOut().then(data=>{
+            this._firebaseAuth.signOut().then(data => {
               this._navCtrl.navigateRoot("login");
             });
           }

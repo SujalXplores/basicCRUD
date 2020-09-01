@@ -7,9 +7,9 @@
 <ion-content>
   <form (ngSubmit)="register(user)">
     <ion-item>
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
       <ion-label position="floating">Email</ion-label>
       <ion-input [ngModelOptions]="{standalone: true}" type="email" required [(ngModel)]="user.email" clearInput></ion-input>
-      <ion-icon slot="start" name="mail-outline"></ion-icon>
     </ion-item>
     
     <ion-item>

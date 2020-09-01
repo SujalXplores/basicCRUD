@@ -1,6 +1,6 @@
 {
   "appId": "com.sujal.myfirstapp",
-  "appName": "basicCRUD",
+  "appName": "CRUD",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -13,7 +13,7 @@
       "androidScaleType": "CENTER_CROP",
       "androidSpinnerStyle": "large",
       "iosSpinnerStyle": "small",
-      "spinnerColor": "#999999",
+      "spinnerColor": "#4156d1",
       "showSpinner": true,
       "splashFullScreen": true,
       "splashImmersive": true

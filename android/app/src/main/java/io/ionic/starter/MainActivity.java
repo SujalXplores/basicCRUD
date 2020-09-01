@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.sujal.myfirstapp;
 
 import android.os.Bundle;
 

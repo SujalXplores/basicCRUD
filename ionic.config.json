@@ -1,5 +1,5 @@
 {
-  "name": "basicCRUD",
+  "name": "CRUD",
   "integrations": {
     "capacitor": {}
   },
